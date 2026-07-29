@@ -1,0 +1,29 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# MUDANÇA AQUI: Adicionado **/ para ignorar no front e no back
+**/node_modules
+**/dist
+**/dist-ssr
+*.local
+
+# Variáveis de ambiente (senhas do backend/banco de dados)
+.env
+*.env
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

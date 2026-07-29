@@ -1,0 +1,65 @@
+.sidebar {
+    width: 18%;
+    min-height: 100vh;
+    background-color: var(--bg-card);
+    box-shadow: 0px 0px 5px 0px #c5c5c5c0;
+    padding: 5px 5px 5px 15px;
+}
+
+.nav_itens {
+    width: 100%;
+    padding: 0px;
+    min-height: 60vh;
+}
+
+.titulo {
+    display: flex;
+    align-items: center;
+    margin: 10px 0 0 5px;
+}
+
+.titulo img {
+    margin-right: 10px;
+}
+
+.nav_itens ul {
+    width: 100%;
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav_itens ul li {
+    width: 100%;
+    min-height: 5vh;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+}
+
+.nav_itens ul li button {
+    width: 100%;
+    padding: 12px 16px;
+    text-align: left;
+    margin-top: 15px;
+    background-color: transparent;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--texto-secundario);
+    cursor: pointer;
+    transition: 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.nav_itens ul li button:hover {
+    color: var(--texto-p);
+    box-shadow: 0px 0px 5px 0px #c5c5c58a;
+    border: 2px solid var(--cor-button);
+    background-color: var(--bg-card);
+}
+
+.nav_itens ul li button:active {
+    color: var(--texto-p);
+    background-color: var(--cor-button);
+}
