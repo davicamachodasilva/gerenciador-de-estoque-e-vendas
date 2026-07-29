@@ -1,6 +1,6 @@
 import style from './FormProduto.module.css'
 
-// Recebemos a função onClose via props
+
 function FormProduto({ onClose }) {
     return (
         <div>
@@ -8,7 +8,7 @@ function FormProduto({ onClose }) {
                 <form className={style.formularioContainer}>
                     <div className={style.formularioCabecalho}>
                         <h2 className={style.formularioTitulo}>Novo Produto</h2>
-                        {/* Chamamos a função enviada pelo pai no onClick */}
+                        
                         <button 
                             type="button" 
                             className={style.botaoFechar} 
@@ -143,7 +143,7 @@ function FormProduto({ onClose }) {
                     </div>
 
                     <div className={style.formularioAcoes}>
-                        {/* Chamamos a mesma função no botão Cancelar */}
+                        
                         <button 
                             type="button" 
                             className={style.botaoCancelar} 
