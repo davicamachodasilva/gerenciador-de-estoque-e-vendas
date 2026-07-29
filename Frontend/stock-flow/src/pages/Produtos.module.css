@@ -24,8 +24,8 @@
   padding: 8px 12px 8px 42px;
   text-align: left;
   margin-top: 15px;
-  background-color: transparent;
-  border: 2px solid var(--bg-card);
+  background-color: var(--bg-card);
+  border: 2px solid var(--cor-button);
   border-radius: 10px;
   font-size: 1.2rem;
   font-weight: 600;
@@ -47,4 +47,3 @@
 .botao:active {
   transform: translateY(-2px);
 }
-
