@@ -12,7 +12,7 @@ function FormProduto({ onClose }) {
                         <button 
                             type="button" 
                             className={style.botaoFechar} 
-                            aria-label="Fechar" 
+                            aria-label="Fechar form" 
                             onClick={onClose}
                         >
                             &times;
