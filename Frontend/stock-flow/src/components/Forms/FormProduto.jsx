@@ -1,18 +1,41 @@
 import style from './FormProduto.module.css'
+import { useState } from 'react'
 
+function FormProduto({ onClose, onSalvar }) {
+    const [nome, setNome] = useState('')
+    const [precoCusto, setPrecoCusto] = useState('')
+    const [precoVenda, setPrecoVenda] = useState('')
+    const [estoque, setEstoque] = useState('')
+    const [minEstoque, setMinEstoque] = useState('')
+    const [categoria, setCategoria] = useState('')
+    const [status, setStatus] = useState('ativo')
 
-function FormProduto({ onClose }) {
+    function enviarInfos(e) {
+        e.preventDefault()
+
+        const NovoProduto = {
+            nome: nome,
+           precoCusto: Number(precoCusto),
+            precoVenda: Number(precoVenda),
+            estoque: Number(estoque),
+            minEstoque: Number(minEstoque),
+            categoria: categoria,
+            status: status
+        }
+
+        onSalvar(NovoProduto)
+    }
     return (
         <div>
             <div className={style.form_centro}>
-                <form className={style.formularioContainer}>
+                <form className={style.formularioContainer} onSubmit={enviarInfos}>
                     <div className={style.formularioCabecalho}>
                         <h2 className={style.formularioTitulo}>Novo Produto</h2>
-                        
-                        <button 
-                            type="button" 
-                            className={style.botaoFechar} 
-                            aria-label="Fechar form" 
+
+                        <button
+                            type="button"
+                            className={style.botaoFechar}
+                            aria-label="Fechar form"
                             onClick={onClose}
                         >
                             &times;
@@ -28,6 +51,7 @@ function FormProduto({ onClose }) {
                             id="nomeProduto"
                             className={style.campoTexto}
                             placeholder="Ex: Camiseta Básica"
+                            onChange={(e) => setNome(e.target.value)}
                         />
                     </div>
 
@@ -42,6 +66,7 @@ function FormProduto({ onClose }) {
                                 id="precoCusto"
                                 className={style.campoTexto}
                                 placeholder="0.00"
+                                onChange={(e) => setPrecoCusto(e.target.value)}
                             />
                         </div>
 
@@ -55,6 +80,7 @@ function FormProduto({ onClose }) {
                                 id="precoVenda"
                                 className={style.campoTexto}
                                 placeholder="0.00"
+                                onChange={(e) => setPrecoVenda(e.target.value)}
                             />
                         </div>
                     </div>
@@ -69,6 +95,8 @@ function FormProduto({ onClose }) {
                                 id="estoqueAtual"
                                 className={style.campoTexto}
                                 placeholder="0"
+                                onChange={(e) => setEstoque(e.target.value)}
+
                             />
                         </div>
 
@@ -81,6 +109,8 @@ function FormProduto({ onClose }) {
                                 id="minimoObrigatorio"
                                 className={style.campoTexto}
                                 placeholder="5"
+                                onChange={(e) => setMinEstoque(e.target.value)}
+
                             />
                         </div>
                     </div>
@@ -90,7 +120,7 @@ function FormProduto({ onClose }) {
                             <label htmlFor="categoria" className={style.rotulo}>
                                 Categoria
                             </label>
-                            <select id="categoria" className={style.campoSelecione} defaultValue="">
+                            <select id="categoria" className={style.campoSelecione} value={categoria} onChange={(e) => setCategoria(e.target.value)}>
                                 <option value="" disabled hidden>Selecione uma categoria</option>
                                 <option value="camisetas">Camisetas e Tops</option>
                                 <option value="camisas">Camisas</option>
@@ -135,7 +165,7 @@ function FormProduto({ onClose }) {
                             <label htmlFor="status" className={style.rotulo}>
                                 Status
                             </label>
-                            <select id="status" className={style.campoSelecione} defaultValue="Ativo">
+                            <select id="status" className={style.campoSelecione} value={status} onChange={(e) => setStatus(e.target.value)}>
                                 <option value="Ativo">Ativo</option>
                                 <option value="Inativo">Inativo</option>
                             </select>
@@ -143,10 +173,10 @@ function FormProduto({ onClose }) {
                     </div>
 
                     <div className={style.formularioAcoes}>
-                        
-                        <button 
-                            type="button" 
-                            className={style.botaoCancelar} 
+
+                        <button
+                            type="button"
+                            className={style.botaoCancelar}
                             onClick={onClose}
                         >
                             Cancelar
