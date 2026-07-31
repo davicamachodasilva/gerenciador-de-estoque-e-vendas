@@ -54,8 +54,8 @@ body {
   min-height: 100vh;
   background-color: var(--bg-principal);
   color: var(--texto-p);
+  overflow-x: hidden; 
 }
-
 h1{
   color: var(--texto-p);
 }

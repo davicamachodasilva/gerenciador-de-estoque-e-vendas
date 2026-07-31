@@ -41,11 +41,9 @@
 }
 
 .botao:hover {
-  transform: translateY(2px);
-}
-
-.botao:active {
-  transform: translateY(-2px);
+   transform: translateY(-2px);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+    border: 2px solid var(--texto-p);
 }
 
 .Lista {
@@ -58,7 +56,7 @@
 .Iten_Lista {
   position: relative;
   background-color: var(--bg-card);
-  border: 1px solid var(--borda-sutil);
+  border: 2px solid var(--borda-sutil);
   border-radius: 12px;
   padding: 20px;
   display: flex;
@@ -73,6 +71,7 @@
 .Iten_Lista:hover {
   transform: translateY(-2px);
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+    border: 2px solid var(--texto-p);
 }
 
 .Iten_Lista_Alerta {
