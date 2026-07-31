@@ -14,15 +14,15 @@ function FormProduto({ onClose, onSalvar }) {
         e.preventDefault()
 
         const NovoProduto = {
+            id: crypto.randomUUID(),
             nome: nome,
-           precoCusto: Number(precoCusto),
-            precoVenda: Number(precoVenda),
-            estoque: Number(estoque),
-            minEstoque: Number(minEstoque),
-            categoria: categoria,
+            precoCusto: Number(precoCusto) || 0,
+            precoVenda: Number(precoVenda) || 0,
+            estoque: Number(estoque) || 0,
+            minEstoque: Number(minEstoque) || 0,
+            categoria: categoria || 'Outros',
             status: status
         }
-
         onSalvar(NovoProduto)
     }
     return (
