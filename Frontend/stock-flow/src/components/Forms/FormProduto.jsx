@@ -10,7 +10,7 @@ function FormProduto({ onClose, onSalvar }) {
     const [categoria, setCategoria] = useState('')
     const [status, setStatus] = useState('ativo')
 
-    function enviarInfos(e) {
+    function handleSubmit(e) {
         e.preventDefault()
 
         const NovoProduto = {
@@ -28,7 +28,7 @@ function FormProduto({ onClose, onSalvar }) {
     return (
         <div>
             <div className={style.form_centro}>
-                <form className={style.formularioContainer} onSubmit={enviarInfos}>
+                <form className={style.formularioContainer} onSubmit={handleSubmit}>
                     <div className={style.formularioCabecalho}>
                         <h2 className={style.formularioTitulo}>Novo Produto</h2>
 

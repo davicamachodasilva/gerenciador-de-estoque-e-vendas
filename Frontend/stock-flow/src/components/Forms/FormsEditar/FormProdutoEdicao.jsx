@@ -1,5 +1,5 @@
 import style from './FormProdutoEdicao.module.css'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 function FormProdutoEdicao({ produtoParaEditar, onClose, onSalvar }) {
     const [nome, setNome] = useState(produtoParaEditar?.nome || '')
@@ -10,23 +10,11 @@ function FormProdutoEdicao({ produtoParaEditar, onClose, onSalvar }) {
     const [categoria, setCategoria] = useState(produtoParaEditar?.categoria || '')
     const [status, setStatus] = useState(produtoParaEditar?.status || 'Ativo')
 
-    useEffect(() => {
-        if (produtoParaEditar) {
-            setNome(produtoParaEditar.nome || '')
-            setPrecoCusto(produtoParaEditar.precoCusto || '')
-            setPrecoVenda(produtoParaEditar.precoVenda || '')
-            setEstoque(produtoParaEditar.estoque || '')
-            setMinEstoque(produtoParaEditar.minEstoque || '')
-            setCategoria(produtoParaEditar.categoria || '')
-            setStatus(produtoParaEditar.status || 'Ativo')
-        }
-    }, [produtoParaEditar])
-
-    function enviarInfos(e) {
+    function handleSubmit(e) {
         e.preventDefault()
 
         const NovoProduto = {
-            id: produtoParaEditar?.id,
+            id: produtoParaEditar.id,
             nome: nome,
             precoCusto: Number(precoCusto) || 0,
             precoVenda: Number(precoVenda) || 0,
@@ -41,7 +29,7 @@ function FormProdutoEdicao({ produtoParaEditar, onClose, onSalvar }) {
     return (
         <div>
             <div className={style.form_centro}>
-                <form className={style.formularioContainer} onSubmit={enviarInfos}>
+                <form className={style.formularioContainer} onSubmit={handleSubmit}>
                     <div className={style.formularioCabecalho}>
                         <h2 className={style.formularioTitulo}>Editar Produto</h2>
 

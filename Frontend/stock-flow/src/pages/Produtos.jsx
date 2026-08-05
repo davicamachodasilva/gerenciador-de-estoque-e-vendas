@@ -4,29 +4,27 @@ import FormProduto from '../components/Forms/FormProduto'
 import FormProdutoEdicao from '../components/Forms/FormsEditar/FormProdutoEdicao'
 import { useState } from 'react'
 
-
-
 function Produtos() {
 
     const [form, setForm] = useState(false)
     const [produtoEmEdicao, setProdutoEmEdicao] = useState(null)
     const [produtos, setProdutos] = useState([])
 
-    const Form_ativado = (setEstado) => {
+    function handleToggleForm(setEstado) {
         setEstado((prev) => !prev)
     }
 
-    function receberDadosDoForm(dadosDoForm) {
-        console.log("Chegou as infos:", dadosDoForm)
+    function handleCriarProduto(dadosDoForm) {
+        // console.log("Chegou as infos:", dadosDoForm)
         setProdutos((produtosAntigos) => [...produtosAntigos, dadosDoForm])
         setForm(false)
     }
 
-    function iniciarEdicao(produto) {
+    function handleIniciarEdicao(produto) {
         setProdutoEmEdicao(produto)
     }
 
-    function salvarEdicao(produtoAtualizado){
+    function handleSalvarEdicao(produtoAtualizado){
         setProdutos((listaAntiga) =>
             listaAntiga.map((item) =>
                 item.id === produtoAtualizado.id ? produtoAtualizado : item
@@ -35,7 +33,7 @@ function Produtos() {
         setProdutoEmEdicao(null)
     }
 
-    function removerItem(ItemRemover) {
+    function handleRemoverItem(ItemRemover) {
         setProdutos((ListaNova) =>
             ListaNova.filter((produtos) => produtos.id !== ItemRemover)
         )
@@ -49,7 +47,7 @@ function Produtos() {
                     <h1>Produtos</h1>
                     <p className={style.subDescricao}>Produtos cadastrados</p>
                 </div>
-                <button onClick={() => Form_ativado(setForm)} className={style.botao}>Novo produto</button>
+                <button onClick={() => handleToggleForm(setForm)} className={style.botao}>Novo produto</button>
             </div>
             <BarraPesquisa />
             <ul className={style.Lista}>
@@ -88,8 +86,8 @@ function Produtos() {
                                 <p className={style.quat_min}>Mínimo: {prod.minEstoque}</p>
 
                                 <div className={style.Iten_Lista_Bottom_Options}>
-                                    <button className={style.Button_Editar} aria-label="Editar" onClick={() => iniciarEdicao(prod)}></button>
-                                    <button className={style.Button_Remover} aria-label="Remover" onClick={() => removerItem(prod.id)}></button>
+                                    <button className={style.Button_Editar} aria-label="Editar" onClick={() => handleIniciarEdicao(prod)}></button>
+                                    <button className={style.Button_Remover} aria-label="Remover" onClick={() => handleRemoverItem(prod.id)}></button>
                                 </div>
                             </div>
                         </li>
@@ -132,12 +130,12 @@ function Produtos() {
                 </li> */}
             </ul>
             {form && (
-                <FormProduto onClose={() => Form_ativado(setForm)} onSalvar={receberDadosDoForm} />
+                <FormProduto onClose={() => handleToggleForm(setForm)} onSalvar={handleCriarProduto} />
 
             )}
 
             {produtoEmEdicao && (
-                <FormProdutoEdicao produtoParaEditar={produtoEmEdicao} onClose={() => setProdutoEmEdicao(null)}  onSalvar={salvarEdicao}/>
+                <FormProdutoEdicao produtoParaEditar={produtoEmEdicao} onClose={() => setProdutoEmEdicao(null)}  onSalvar={handleSalvarEdicao}/>
 
             )}
         </div>
