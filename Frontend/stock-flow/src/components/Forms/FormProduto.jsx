@@ -2,26 +2,44 @@ import style from './FormProduto.module.css'
 import { useState } from 'react'
 
 function FormProduto({ onClose, onSalvar }) {
-    const [nome, setNome] = useState('')
-    const [precoCusto, setPrecoCusto] = useState('')
-    const [precoVenda, setPrecoVenda] = useState('')
-    const [estoque, setEstoque] = useState('')
-    const [minEstoque, setMinEstoque] = useState('')
-    const [categoria, setCategoria] = useState('')
-    const [status, setStatus] = useState('ativo')
+    const [formData, setFormData] = useState({
+        nome: '',
+        precoCusto: '',
+        precoVenda: '',
+        estoque: '',
+        minEstoque: '',
+        categoria: '',
+        status: 'Ativo'
+    })
+    // const [nome, setNome] = useState('')
+    // const [precoCusto, setPrecoCusto] = useState('')
+    // const [precoVenda, setPrecoVenda] = useState('')
+    // const [estoque, setEstoque] = useState('')
+    // const [minEstoque, setMinEstoque] = useState('')
+    // const [categoria, setCategoria] = useState('')
+    // const [status, setStatus] = useState('ativo')
+
+    function handleChange(e) {
+        const { id, value } = e.target
+
+        setFormData((estadoAnterior) => ({
+            ...estadoAnterior,
+            [id]: value
+        }))
+    }
 
     function handleSubmit(e) {
         e.preventDefault()
 
         const NovoProduto = {
             id: crypto.randomUUID(),
-            nome: nome,
-            precoCusto: Number(precoCusto) || 0,
-            precoVenda: Number(precoVenda) || 0,
-            estoque: Number(estoque) || 0,
-            minEstoque: Number(minEstoque) || 0,
-            categoria: categoria || 'Outros',
-            status: status
+            nome: formData.nome,
+            precoCusto: Number(formData.precoCusto) || 0,
+            precoVenda: Number(formData.precoVenda) || 0,
+            estoque: Number(formData.estoque) || 0,
+            minEstoque: Number(formData.minEstoque) || 0,
+            categoria: formData.categoria || 'Outros',
+            status: formData.status
         }
         onSalvar(NovoProduto)
     }
@@ -51,7 +69,8 @@ function FormProduto({ onClose, onSalvar }) {
                             id="nomeProduto"
                             className={style.campoTexto}
                             placeholder="Ex: Camiseta Básica"
-                            onChange={(e) => setNome(e.target.value)}
+                            value={formData.nome}
+                            onChange={handleChange}
                         />
                     </div>
 
@@ -66,7 +85,8 @@ function FormProduto({ onClose, onSalvar }) {
                                 id="precoCusto"
                                 className={style.campoTexto}
                                 placeholder="0.00"
-                                onChange={(e) => setPrecoCusto(e.target.value)}
+                                value={formData.precoCusto}
+                                onChange={handleChange}
                             />
                         </div>
 
@@ -80,7 +100,8 @@ function FormProduto({ onClose, onSalvar }) {
                                 id="precoVenda"
                                 className={style.campoTexto}
                                 placeholder="0.00"
-                                onChange={(e) => setPrecoVenda(e.target.value)}
+                                value={formData.precoVenda}
+                                onChange={handleChange}
                             />
                         </div>
                     </div>
@@ -95,7 +116,8 @@ function FormProduto({ onClose, onSalvar }) {
                                 id="estoqueAtual"
                                 className={style.campoTexto}
                                 placeholder="0"
-                                onChange={(e) => setEstoque(e.target.value)}
+                                value={formData.estoque}
+                                onChange={handleChange}
 
                             />
                         </div>
@@ -109,7 +131,8 @@ function FormProduto({ onClose, onSalvar }) {
                                 id="minimoObrigatorio"
                                 className={style.campoTexto}
                                 placeholder="5"
-                                onChange={(e) => setMinEstoque(e.target.value)}
+                                value={formData.minEstoque}
+                                onChange={handleChange}
 
                             />
                         </div>
@@ -120,7 +143,7 @@ function FormProduto({ onClose, onSalvar }) {
                             <label htmlFor="categoria" className={style.rotulo}>
                                 Categoria
                             </label>
-                            <select id="categoria" className={style.campoSelecione} value={categoria} onChange={(e) => setCategoria(e.target.value)}>
+                            <select id="categoria" className={style.campoSelecione} value={formData.categoria} onChange={handleChange}>
                                 <option value="" disabled hidden>Selecione uma categoria</option>
                                 <option value="camisetas">Camisetas e Tops</option>
                                 <option value="camisas">Camisas</option>
@@ -165,7 +188,7 @@ function FormProduto({ onClose, onSalvar }) {
                             <label htmlFor="status" className={style.rotulo}>
                                 Status
                             </label>
-                            <select id="status" className={style.campoSelecione} value={status} onChange={(e) => setStatus(e.target.value)}>
+                            <select id="status" className={style.campoSelecione} value={formData.status} onChange={handleChange}>
                                 <option value="Ativo">Ativo</option>
                                 <option value="Inativo">Inativo</option>
                             </select>
