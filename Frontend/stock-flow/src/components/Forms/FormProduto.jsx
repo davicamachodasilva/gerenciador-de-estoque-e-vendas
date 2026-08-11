@@ -66,7 +66,7 @@ function FormProduto({ onClose, onSalvar }) {
                         </label>
                         <input
                             type="text"
-                            id="nomeProduto"
+                            id="nome"
                             className={style.campoTexto}
                             placeholder="Ex: Camiseta Básica"
                             value={formData.nome}
@@ -113,7 +113,7 @@ function FormProduto({ onClose, onSalvar }) {
                             </label>
                             <input
                                 type="number"
-                                id="estoqueAtual"
+                                id="estoque"
                                 className={style.campoTexto}
                                 placeholder="0"
                                 value={formData.estoque}
@@ -128,7 +128,7 @@ function FormProduto({ onClose, onSalvar }) {
                             </label>
                             <input
                                 type="number"
-                                id="minimoObrigatorio"
+                                id="minEstoque"
                                 className={style.campoTexto}
                                 placeholder="5"
                                 value={formData.minEstoque}
