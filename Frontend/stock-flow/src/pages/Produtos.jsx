@@ -1,38 +1,39 @@
 import style from './Produtos.module.css'
 import BarraPesquisa from '../components/BuscaEfiltro/BarraPesquisa'
 import FormProduto from '../components/Forms/FormProduto'
-import FormProdutoEdicao from '../components/Forms/FormsEditar/FormProdutoEdicao'
 import { useState } from 'react'
 
 function Produtos() {
 
-    const [form, setForm] = useState(false)
+   const [isFormOpen, setIsFormOpen] = useState(false)
     const [produtoEmEdicao, setProdutoEmEdicao] = useState(null)
     const [produtos, setProdutos] = useState([])
 
-    function handleToggleForm(setEstado) {
-        setEstado((prev) => !prev)
+  function handleSalvarProduto(produto) {
+        setProdutos((listaAntiga) => {
+            const existe = listaAntiga.some((p) => p.id === produto.id)
+            if (existe) {
+                return listaAntiga.map((p) => (p.id === produto.id ? produto : p))
+            }
+            return [...listaAntiga, produto]
+        })
+        fecharFormulario()
     }
 
-    function handleCriarProduto(dadosDoForm) {
-        // console.log("Chegou as infos:", dadosDoForm)
-        setProdutos((produtosAntigos) => [...produtosAntigos, dadosDoForm])
-        setForm(false)
+   function handleAbrirCriacao() {
+        setProdutoEmEdicao(null)
+        setIsFormOpen(true)
     }
 
     function handleIniciarEdicao(produto) {
         setProdutoEmEdicao(produto)
+        setIsFormOpen(true)
     }
 
-    function handleSalvarEdicao(produtoAtualizado){
-        setProdutos((listaAntiga) =>
-            listaAntiga.map((item) =>
-                item.id === produtoAtualizado.id ? produtoAtualizado : item
-            )
-        )
+    function fecharFormulario() {
+        setIsFormOpen(false)
         setProdutoEmEdicao(null)
     }
-
     function handleRemoverItem(ItemRemover) {
         setProdutos((ListaNova) =>
             ListaNova.filter((produtos) => produtos.id !== ItemRemover)
@@ -47,9 +48,13 @@ function Produtos() {
                     <h1>Produtos</h1>
                     <p className={style.subDescricao}>Produtos cadastrados</p>
                 </div>
-                <button onClick={() => handleToggleForm(setForm)} className={style.botao}>Novo produto</button>
+                <button onClick={handleAbrirCriacao} className={style.botao}>
+                    Novo produto
+                </button>
             </div>
+
             <BarraPesquisa />
+
             <ul className={style.Lista}>
                 {produtos.length === 0 ? (
                     <p className={style.SemProdutos}>Nenhum produto cadastrado.</p>
@@ -86,57 +91,29 @@ function Produtos() {
                                 <p className={style.quat_min}>Mínimo: {prod.minEstoque}</p>
 
                                 <div className={style.Iten_Lista_Bottom_Options}>
-                                    <button className={style.Button_Editar} aria-label="Editar" onClick={() => handleIniciarEdicao(prod)}></button>
-                                    <button className={style.Button_Remover} aria-label="Remover" onClick={() => handleRemoverItem(prod.id)}></button>
+                                    <button 
+                                        className={style.Button_Editar} 
+                                        aria-label="Editar" 
+                                        onClick={() => handleIniciarEdicao(prod)}
+                                    ></button>
+                                    <button 
+                                        className={style.Button_Remover} 
+                                        aria-label="Remover" 
+                                        onClick={() => handleRemoverItem(prod.id)}
+                                    ></button>
                                 </div>
                             </div>
                         </li>
                     ))
                 )}
-                {/* <li className='Iten_Lista'>
-                    <div className="Iten_Lista_Cima">
-                        <img src="" alt="image do produto" />
-                        <div className="Iten_Lista_Cima_infos">
-                            <p className='Nome_Produto'></p>
-                            <p className='Categoria_Produto'></p>
-                        </div>
-                    </div>
-
-                    <div className="Iten_Lista_Meio">
-                        <div className="Iten_Lista_Meio_Infos">
-                            <p className='Info'>Custo</p>
-                            <p className='info_num'>Valor</p>
-                        </div>
-
-                        <div className="Iten_Lista_Meio_Infos">
-                            <p className='Info'>Venda</p>
-                            <p className='info_num'>Valor</p>
-                        </div>
-
-                        <div className="Iten_Lista_Meio_Infos">
-                            <p className='Info'>Margem</p>
-                            <p className='info_num'>Valor</p>
-                        </div>
-                    </div>
-
-                    <div className="Iten_Lista_Bottom">
-                        <p className='quant'>0</p>
-                        <p className='quat_min'>0</p>
-                        <div className"Iten_Lista_Bottom_Options"> 
-                         <button className"Button_Editar"></button>
-               <button className"Button_Remover"></button>
-               </div>
-                    </div>
-                </li> */}
             </ul>
-            {form && (
-                <FormProduto onClose={() => handleToggleForm(setForm)} onSalvar={handleCriarProduto} />
 
-            )}
-
-            {produtoEmEdicao && (
-                <FormProdutoEdicao produtoParaEditar={produtoEmEdicao} onClose={() => setProdutoEmEdicao(null)}  onSalvar={handleSalvarEdicao}/>
-
+            {isFormOpen && (
+                <FormProduto
+                    produtoParaEditar={produtoEmEdicao}
+                    onClose={fecharFormulario}
+                    onSalvar={handleSalvarProduto}
+                />
             )}
         </div>
     )
