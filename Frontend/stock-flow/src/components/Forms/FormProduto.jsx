@@ -20,6 +20,7 @@ function FormProduto({ produtoParaEditar = null, onClose, onSalvar }) {
   // const [categoria, setCategoria] = useState('')
   // const [status, setStatus] = useState('ativo')
 
+  
   function handleChange(e) {
     const { id, value } = e.target;
 
