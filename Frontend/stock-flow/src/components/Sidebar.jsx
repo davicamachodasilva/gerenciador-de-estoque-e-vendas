@@ -1,7 +1,11 @@
 import style from "./Sidebar.module.css";
 import favicon from "../assets/img/favicon.svg";
+import { useTheme } from "../hooks/useTheme";
+import { Moon, Sun } from "lucide-react";
 
 function Sidebar({ paginaAtual, setPaginaAtual }) {
+  const { theme, toggleTheme } = useTheme();
+
   return (
     <header className={style.sidebar}>
       <article className={style.titulo}>
@@ -45,6 +49,10 @@ function Sidebar({ paginaAtual, setPaginaAtual }) {
             </button>
           </li>
         </ul>
+
+        <button className={style.button_Theme} onClick={toggleTheme}>
+          {theme === "light" ? <Moon /> : <Sun />}
+        </button>
       </nav>
     </header>
   );

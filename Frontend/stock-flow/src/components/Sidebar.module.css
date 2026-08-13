@@ -5,15 +5,18 @@
     top: 0;           
     overflow-y: auto; 
     
-    background-color: var(--bg-card);
-    box-shadow: 0px 0px 5px 0px #c5c5c5c0;
+    /* background-color: var(--bg-card); */
+    box-shadow: 0px 0px 5px 0px var(--sidebar-shadow);
     padding: 5px 5px 5px 15px;
 }
 
 .nav_itens {
     width: 100%;
     padding: 0px;
-    min-height: 60vh;
+    min-height: 93vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .titulo {
@@ -65,5 +68,35 @@
 
 .nav_itens ul li button:active {
     color: var(--texto-p);
+    background-color: var(--cor-button);
+}
+
+.button_Theme{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 12px 16px;
+    text-align: left;
+    margin-top: 15px;
+    background-color: transparent;
+    border: 2px solid var(--cor-button);
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--texto-secundario);
+    cursor: pointer;
+    transition: 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.button_Theme:hover{
+     color: var(--texto-p);
+    box-shadow: 0px 0px 5px 0px #c5c5c58a;
+    border: 2px solid var(--cor-button);
+    background-color: var(--bg-card);
+}
+
+.button_Theme:active{
+     color: var(--texto-p);
     background-color: var(--cor-button);
 }
