@@ -9,6 +9,7 @@ function Produtos() {
   const [produtoEmEdicao, setProdutoEmEdicao] = useState(null);
   const [produtos, setProdutos] = useState([]);
 
+
   function handleSalvarProduto(produto) {
     setProdutos((listaAntiga) => {
       const existe = listaAntiga.some((p) => p.id === produto.id);

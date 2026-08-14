@@ -1,4 +1,7 @@
  :root {
+  --bg-dark: #ffffff;
+  --bg-light: #f4f4f5;
+  --bg-gradient: linear-gradient(45deg, var(--bg-dark), var(--bg-light));
   --bg-principal: #ffffff;
   --bg-card: #f8fafc;
   --bg-button-hover: #e7e7e78e;
@@ -22,18 +25,18 @@
 } 
 
   [data-theme="dark"]{
-  --bg-dark: #000000;
+  --bg-dark: #0a0a0a;
   --bg-light: #1e1e24;
-  --bg-gradient: linear-gradient(45deg, var(--bg-dark), var(--bg-light));
+  --bg-gradient: linear-gradient(-45deg, var(--bg-dark), var(--bg-light));
   --bg-principal: #0d0f13;
   --bg-card: #08090c;
   --bg-button-hover: #1e293b;
 
-  --texto-p: rgba(248, 250, 252, 0.801);
-  --texto-secundario: #94a3b8;
+  --texto-p: rgb(248, 250, 252);
+  --texto-secundario: #cececee1;
 
   --cor-destaque: #f8fafc;
-  --cor-button: #334155;
+  --cor-button: #111111f1;
 
   --cor-sucesso: #10b981;
   --cor-alerta: #f87171;
@@ -43,7 +46,7 @@
   --cor-primaria-acao: #536dfe;
   --cor-primaria-hover: #3d5afe;
 
-  --pesquisa-shadow:#334155;
+  --pesquisa-shadow:#000000;
   --sidebar-shadow:#000000f1;
 } 
 

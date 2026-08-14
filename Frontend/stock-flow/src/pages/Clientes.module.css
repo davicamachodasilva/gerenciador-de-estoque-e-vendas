@@ -105,17 +105,18 @@
   gap: 12px;
 }
 
-.Icone_Cubo {
+ .Icone_Cubo {
+  display: none;
   width: 44px;
   height: 44px;
   background-color: rgba(48, 79, 254, 0.1);
   border-radius: 8px;
-  background-image: url('../assets/img/cubo.svg');
+   background-image: url('../assets/img/cubo.svg'); 
   background-repeat: no-repeat;
   background-position: center;
   background-size: 24px 24px;
   flex-shrink: 0;
-}
+} 
 
 .Iten_Lista_Cima_infos {
   display: flex;
@@ -237,4 +238,17 @@
 
 .Button_Remover:hover {
   background-color: rgba(239, 68, 68, 0.15);
+}
+
+.Icone_Cliente {
+  width: 44px;
+  height: 44px;
+  background-color: rgba(48, 79, 254, 0.884);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #304ffe;
+  font-weight: 700;
+  flex-shrink: 0;
 }

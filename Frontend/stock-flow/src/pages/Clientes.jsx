@@ -7,10 +7,10 @@ import { useState } from "react";
 function Clientes() {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [produtoEmEdicao, setProdutoEmEdicao] = useState(null);
-  const [produtos, setProdutos] = useState([]);
+  const [clientes, setClientes] = useState([]);
 
   function handleSalvarProduto(produto) {
-    setProdutos((listaAntiga) => {
+    setClientes((listaAntiga) => {
       const existe = listaAntiga.some((p) => p.id === produto.id);
       if (existe) {
         return listaAntiga.map((p) => (p.id === produto.id ? produto : p));
@@ -35,7 +35,7 @@ function Clientes() {
     setProdutoEmEdicao(null);
   }
   function handleRemoverItem(ItemRemover) {
-    setProdutos((ListaNova) =>
+    setClientes((ListaNova) =>
       ListaNova.filter((produtos) => produtos.id !== ItemRemover),
     );
   }
@@ -54,65 +54,45 @@ function Clientes() {
 
       <BarraPesquisa />
 
-      <ul className={style.Lista}>
-        {produtos.length === 0 ? (
-          <p className={style.SemProdutos}>Nenhum produto cadastrado.</p>
-        ) : (
-          produtos.map((prod) => (
-            <li key={prod.id} className={style.Iten_Lista}>
-              <div className={style.Iten_Lista_Cima}>
-                <div className={style.Icone_Cubo}></div>
-                <div className={style.Iten_Lista_Cima_infos}>
-                  <p className={style.Nome_Produto}>
-                    <strong>{prod.nome}</strong>
-                  </p>
-                  <p className={style.Categoria_Produto}>{prod.categoria}</p>
-                </div>
-              </div>
+     <ul className={style.Lista}>
+  {clientes.length === 0 ? (
+    <p className={style.SemProdutos}>Nenhum cliente cadastrado.</p>
+  ) : (
+    clientes.map((cliente) => (
+      <li key={cliente.id} className={style.Iten_Lista}>
+        <div className={style.Iten_Lista_Cima}>
+          <div className={style.Icone_Cliente}>
+            {cliente.nome ? cliente.nome.charAt(0).toUpperCase() : ''}
+          </div>
+          
+          <div className={style.Iten_Lista_Cima_infos}>
+            <p className={style.Nome_Produto}>
+              <strong>{cliente.nome}</strong>
+            </p>
+            <p className={style.Categoria_Produto}>{cliente.email}</p>
+          </div>
+        </div>
 
-              <div className={style.Iten_Lista_Meio}>
-                <div className={style.Iten_Lista_Meio_Infos}>
-                  <p className={style.Info}>Custo</p>
-                  <p className={style.info_num}>
-                    R$ {(prod.precoCusto ?? 0).toFixed(2)}
-                  </p>
-                </div>
+        <div className={style.Iten_Lista_Bottom}>
+          <p className={style.Categoria_Produto}>{cliente.telefone}</p>
 
-                <div className={style.Iten_Lista_Meio_Infos}>
-                  <p className={style.Info}>Venda</p>
-                  <p className={style.info_num}>
-                    R$ {(prod.precoCusto ?? 0).toFixed(2)}
-                  </p>
-                </div>
-
-                <div className={style.Iten_Lista_Meio_Infos}>
-                  <p className={style.Info}>Status</p>
-                  <p className={style.info_num}>{prod.status}</p>
-                </div>
-              </div>
-
-              <div className={style.Iten_Lista_Bottom}>
-                <p className={style.quant}>Estoque: {prod.estoque}</p>
-                <p className={style.quat_min}>Mínimo: {prod.minEstoque}</p>
-
-                <div className={style.Iten_Lista_Bottom_Options}>
-                  <button
-                    className={style.Button_Editar}
-                    aria-label="Editar"
-                    onClick={() => handleIniciarEdicao(prod)}
-                  ></button>
-                  <button
-                    className={style.Button_Remover}
-                    aria-label="Remover"
-                    onClick={() => handleRemoverItem(prod.id)}
-                  ></button>
-                </div>
-              </div>
-            </li>
-          ))
-        )}
-      </ul>
-
+          <div className={style.Iten_Lista_Bottom_Options}>
+            <button
+              className={style.Button_Editar}
+              aria-label="Editar"
+              onClick={() => handleIniciarEdicao(cliente)}
+            ></button>
+            <button
+              className={style.Button_Remover}
+              aria-label="Remover"
+              onClick={() => handleRemoverItem(cliente.id)}
+            ></button>
+          </div>
+        </div>
+      </li>
+    ))
+  )}
+</ul>
       {isFormOpen && (
         <FormCliente
           key={produtoEmEdicao ? produtoEmEdicao.id : "novo-produto"}
